@@ -18,9 +18,11 @@ public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     @Value("${isi.idl.jwtSecret}")
+  //  @Value("${isi.tn.jwtSecret}")
     private String jwtSecret;
 
     @Value("${isi.idl.jwtExpirationMs}")
+   // @Value("${isi.tn.jwtExpirationMs}")
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
