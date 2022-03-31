@@ -1,5 +1,7 @@
 package isi.tn.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
@@ -15,12 +17,12 @@ public class Team {
     private String Country;
 
     @OneToMany(mappedBy="team1",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-   // @JsonIgnore
-    //@JsonBackReference
-    private Set<Match> matches;
+    @JsonIgnore
+    @JsonBackReference
+    private Set<Game> matches;
 
 
-    public Team(Long id, String name, String country, Set<Match> matches) {
+    public Team(Long id, String name, String country, Set<Game> matches) {
         this.id = id;
         Name = name;
         Country = country;

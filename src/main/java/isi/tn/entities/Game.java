@@ -1,33 +1,36 @@
 package isi.tn.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
 @EnableAutoConfiguration
 @Entity
-public class Match {
+
+public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne//(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-   // @JsonManagedReference
-    //@JsonIgnore
+    @JsonManagedReference
+    @JsonIgnore
     private Team team1;
 
-  //  @ManyToOne//(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-   // @JsonManagedReference
-    //@JsonIgnore
-   // private Team team2;
+    @ManyToOne//(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @JsonIgnore
+    private Team team2;
 
 
-    public Match(Long id, Team team1) {
+    public Game(Long id, Team team1) {
         this.id = id;
         this.team1 = team1;
 
     }
 
-    public Match() {
+    public Game() {
     }
 
 
