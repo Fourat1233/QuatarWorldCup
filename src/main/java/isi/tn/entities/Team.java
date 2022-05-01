@@ -2,6 +2,7 @@ package isi.tn.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
@@ -61,6 +62,13 @@ public class Team {
     public void setCountry(String country) {
         Country = country;
     }
+    @JsonIgnoreProperties({"team1", "team2"})
 
+    public Set<Game> getMatches() {
+        return matches;
+    }
 
+    public void setMatches(Set<Game> matches) {
+        this.matches = matches;
+    }
 }

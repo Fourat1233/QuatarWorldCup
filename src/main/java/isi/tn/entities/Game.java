@@ -1,6 +1,7 @@
 package isi.tn.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
@@ -16,6 +17,7 @@ public class Game {
     @ManyToOne//(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonManagedReference
     @JsonIgnore
+
     private Team team1;
 
     @ManyToOne//(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -24,9 +26,10 @@ public class Game {
     private Team team2;
 
 
-    public Game(Long id, Team team1) {
+    public Game(Long id, Team team1,Team team2) {
         this.id = id;
         this.team1 = team1;
+        this.team2 = team2;
 
     }
 
@@ -41,7 +44,7 @@ public class Game {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @JsonIgnoreProperties("matches")
     public Team getTeam1() {
         return team1;
     }
@@ -50,7 +53,13 @@ public class Game {
         this.team1 = team1;
     }
 
+    @JsonIgnoreProperties("matches")
+    public Team getTeam2() {
+        return team2;
+    }
 
 
-
+    public void setTeam2(Team team2) {
+        this.team2 = team2;
+    }
 }
